@@ -224,11 +224,11 @@ int tmin(void) {
  */
 
 int fitsBits(int x, int n) {
-	int higher_mask = ((~0) << n) >> 1;
-	int higher_bits = higher_mask & x;
-	int no_zero = !(higher_bits ^ higher_mask);
-	return	(n >> 5) | no_zero | !(higher_mask & x);
+	int count = 32 + ~n + 1;
+	int leftright = (x << count) >> count;
+	return !(x ^ leftright);
 }
+
 
 /* 
  * divpwr2 - Compute x/(2^n), for 0 <= n <= 30
