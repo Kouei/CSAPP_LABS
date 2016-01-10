@@ -229,6 +229,13 @@ int fitsBits(int x, int n) {
 	return !(x ^ leftright);
 }
 
+/*old version of fitsBits*/
+/*int fitsBits(int x, int n) {
+	int higher_mask = ((~0) << n) >> 1;
+	int higher_bits = higher_mask & x;
+	int no_zero = !(higher_bits ^ higher_mask);
+	return	(n >> 5) | no_zero | !(higher_mask & x);
+}*/
 
 /* 
  * divpwr2 - Compute x/(2^n), for 0 <= n <= 30
