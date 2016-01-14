@@ -348,10 +348,9 @@ unsigned float_i2f(int x) {
 	int e;
 	int f;
 	int count = 32;
-	int rear;
+	int roundup;
 
 	if(!x) return 0;
-	if(x == mask) return 0xCF000000;
 	if(s) x = ~x + 1;
 	while(!(x & mask))
 	{
@@ -359,11 +358,9 @@ unsigned float_i2f(int x) {
 		--count;
 	}
 	e = (count + 126) << 23; // e = (count - 1 + 127) << 23
-	x <<= 1;
-	rear = x & 0x1FF;
-	f = ((x >> 9) & mask2);
-	if(rear > 0x100) f += 1;
-	else if(rear == 0x100 && (f & 1)) f += 1;
+	f = ((x >> 8) & mask2);
+	roundup = ((f & 1) + (x & 0xFF)) > 0x80;
+	f += roundup;
 	return s + e + f;
 }
 /* 
