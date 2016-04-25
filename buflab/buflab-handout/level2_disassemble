@@ -1,0 +1,12 @@
+
+level2_asm.o：     文件格式 elf32-i386
+
+
+Disassembly of section .text:
+
+00000000 <.text>:
+   0:	bb 74 f5 7a 10       	mov    $0x107af574,%ebx
+   5:	89 1d ec c1 04 08    	mov    %ebx,0x804c1ec
+   b:	b9 22 90 04 08       	mov    $0x8049022,%ecx
+  10:	51                   	push   %ecx
+  11:	c3                   	ret    
